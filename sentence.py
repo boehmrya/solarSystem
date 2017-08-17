@@ -25,6 +25,25 @@ class Sentence:
 	def addPuncMark(self, puncMark):
 		self.words = (self.words + puncMark)
 
+	# overloaded operators
+	def __getitem__(self, i):
+		wordList = self.getWords()
+		return wordList[i]
+
+	def __len__(self):
+		return getNumWords()
+
+	def __contains__(self, word):
+		wordList = self.getWords()
+		for w in wordList:
+			if w == word:
+				return True
+		return False
+
+	def __add__(self, newWords):
+		self.words = self.words + self.newWords
+
+
 
 
 class newSentence:
