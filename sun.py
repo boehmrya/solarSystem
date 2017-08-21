@@ -7,6 +7,18 @@ class Sun:
 		self.radius = irad
 		self.mass = im
 		self.temp = itemp
+		self.x = 0
+		self.y = 0
+		#turtle object
+		self.sturtle = turtle.Turtle()
+		self.sturtle.shape("circle")
+		self.sturtle.color("yellow")
+
+	def getXPos(self):
+		return self.x
+
+	def getYPos(self):
+		return self.y
 
 	def getMass(self):
 		return self.mass
@@ -48,3 +60,4 @@ class Sun:
 
 	def __str__(self):
 		return self.name
+

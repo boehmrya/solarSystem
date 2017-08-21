@@ -20,6 +20,7 @@ class Planet:
 	def getMass(self):
 		return self.mass
 
+	# distance from sun
 	def getDistance(self):
 		return self.distance
 
@@ -55,15 +56,6 @@ class Planet:
 	# to string method
 	def __str__(self):
 		return self.name
-
-
-
-
-
-myPlanet = Planet("X25", 45, 198, 1000, 3)
-print(myPlanet.getName())
-myPlanet.setName('Hydra')
-print(myPlanet.getName())
 
 
 
