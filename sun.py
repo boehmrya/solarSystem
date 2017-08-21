@@ -1,5 +1,6 @@
 
 import math
+import turtle
 
 class Sun:
 	def __init__(self, iname, irad, im, itemp):
@@ -13,6 +14,8 @@ class Sun:
 		self.sturtle = turtle.Turtle()
 		self.sturtle.shape("circle")
 		self.sturtle.color("yellow")
+		self.sturtle.resizemode("user")	
+		self.sturtle.shapesize(0.006 * self.radius, 0.006 * self.radius)
 
 	def getXPos(self):
 		return self.x

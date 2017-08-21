@@ -1,16 +1,32 @@
 
 import math
+import turtle
 
 class Planet:
-	def __init__(self, iname, irad, im, idist, inumMoons, imoonList):
+	def __init__(self, iname, irad, im, idist, ic):
 		self.name = iname
 		self.radius = irad
 		self.mass = im
 		self.distance = idist
-		self.numMoons = inumMoons
-		self.moonList = imoonList
+		self.x = idist
+		self.y = 0
+		self.color = ic
+		#turtle object
+		self.pturtle = turtle.Turtle()
+		self.pturtle.color(self.color)
+		self.pturtle.shape("circle")
+		self.pturtle.up()
+		self.pturtle.goto(self.x, self.y)
+		self.pturtle.down()
+		self.pturtle.resizemode("user")	
+		self.pturtle.shapesize(0.006 * self.radius, 0.006 * self.radius)
 
-	# accessor methods
+	def getXPos(self):
+		return self.x
+
+	def getYPos(self):
+		return self.y
+
 	def getName(self):
 		return self.name
 
@@ -23,9 +39,6 @@ class Planet:
 	# distance from sun
 	def getDistance(self):
 		return self.distance
-
-	def getNumMoons(self):
-		return self.numMoons
 
 	def getCircumference(self):
 		c = math.pi * (2 * self.radius)
@@ -43,15 +56,8 @@ class Planet:
 		d = self.mass / self.getVolume()
 		return d
 
-	# mutator methods
 	def setName(self, newName):
 		self.name = newName
-
-	def setNumMoons(self, newNumMoons):
-		self.numMoons = newNumMoons
-
-	def addMoon(self, moonName):
-		self.moonList.append(moonName)
 
 	# to string method
 	def __str__(self):

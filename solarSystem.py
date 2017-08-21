@@ -3,7 +3,7 @@ from sun import *
 from planet import *
 import turtle
 
-class solarSystem:
+class SolarSystem:
 	def __init__(self, width, height):
 		self.thesun = None
 		self.planets = []
@@ -81,11 +81,30 @@ class solarSystem:
 
 
 
+#create solar system
+ss = SolarSystem(2,2)
 
+# create and add sun
+sun = Sun("SUN", 5000, 10, 5800)
+ss.addSun(sun)
 
+# create and add planets
+m = Planet("MERCURY", 19.5, 1000, .25, "blue")
+ss.addPlanet(m)
 
-mySun = Sun("theSun", 10, 45, 3)
-print(mySun)
+m = Planet("EARTH", 47.5, 5000, .3, "green")
+ss.addPlanet(m)
+
+m = Planet("MARS", 50, 9000, .5, "red")
+ss.addPlanet(m)
+
+m = Planet("JUPITER", 100, 49000, .7, "black")
+ss.addPlanet(m)
+
+m = Planet("SATURN", 80, 30000, .9, "orange")
+ss.addPlanet(m)
+
+ss.freeze()
 
 
 
