@@ -2,6 +2,7 @@
 from sun import *
 from planet import *
 import turtle
+import math
 
 class SolarSystem:
 	def __init__(self, width, height):
@@ -65,6 +66,24 @@ class SolarSystem:
 				maxDistPlanet = planet
 		return maxDistPlanet
 
+	def movePlanets(self):
+		G = .1
+		dt = .001
+
+		for p in self.planets:
+			p.moveTo(p.getXPos() + dt * p.getXVel(),
+					 p.getYPos() + dt * p.getYVel())
+
+			rx = self.thesun.getXPos() - p.getXPos()
+			ry = self.thesun.getYPos() - p.getYPos()
+			r = math.sqrt(rx**2 + ry**2)
+
+			accx = G * self.thesun.getMass() * (rx / r**3)
+			accy = G * self.thesun.getMass() * (ry / r**3)
+
+			p.setXVel(p.getXVel() + dt * accx)
+			p.setYVel(p.getYVel() + dt * accy)
+
 	# to string method for printing
 	def __str__(self):
 		planetList = [self.thesun]
@@ -81,30 +100,35 @@ class SolarSystem:
 
 
 
-#create solar system
-ss = SolarSystem(2,2)
+def createSSandAnimate():
+	#create solar system
+	ss = SolarSystem(2,2)
 
-# create and add sun
-sun = Sun("SUN", 5000, 10, 5800)
-ss.addSun(sun)
+	# create and add sun
+	sun = Sun("SUN", 5000, 10, 5800)
+	ss.addSun(sun)
 
-# create and add planets
-m = Planet("MERCURY", 19.5, 1000, .25, "blue")
-ss.addPlanet(m)
+	# create and add planets
+	m = Planet("MERCURY", 19.5, 1000, .25, 0, 2.0, "blue")
+	ss.addPlanet(m)
 
-m = Planet("EARTH", 47.5, 5000, .3, "green")
-ss.addPlanet(m)
+	m = Planet("EARTH", 47.5, 5000, .3, 0, 2.0, "green")
+	ss.addPlanet(m)
 
-m = Planet("MARS", 50, 9000, .5, "red")
-ss.addPlanet(m)
+	m = Planet("MARS", 50, 9000, .5, 0, 1.63, "red")
+	ss.addPlanet(m)
 
-m = Planet("JUPITER", 100, 49000, .7, "black")
-ss.addPlanet(m)
+	m = Planet("JUPITER", 100, 49000, .7, 0, 1, "black")
+	ss.addPlanet(m)
 
-m = Planet("SATURN", 80, 30000, .9, "orange")
-ss.addPlanet(m)
+	numTimePeriods = 2000
+	for amove in range(numTimePeriods):
+		ss.movePlanets()
 
-ss.freeze()
+	ss.freeze()
+
+
+createSSandAnimate()
 
 
 
